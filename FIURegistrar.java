@@ -8,10 +8,10 @@ public class FIURegistrar {
 
     public static void main(String[] args) {
         // Ask how many students to create
-        int numberOfStudents = Integer.parseInt(JOptionPane.showInputDialog("How many students would you like to create?"));
+        int numStudents = Integer.parseInt(JOptionPane.showInputDialog("How many students would you like to create?"));
 
         // Create an array of students
-        Student[] students = createArrayOfStudents(numberOfStudents);
+        Student[] students = createArrayOfStudents(numStudents);
 
         // Process the array and display results
         processArrayOfStudents(students);
@@ -19,13 +19,13 @@ public class FIURegistrar {
 
     /**
      * Creates an array of Student objects by collecting data from the user.
-     * @param numberOfStudents Number of students to create.
+     * @param numStudents Number of students to create.
      * @return Array of Student objects.
      */
-    public static Student[] createArrayOfStudents(int numberOfStudents) {
-        Student[] students = new Student[numberOfStudents];
+    public static Student[] createArrayOfStudents(int numStudents) {
+        Student[] students = new Student[numStudents];
 
-        for (int i = 0; i < numberOfStudents; i++) {
+        for (int i = 0; i < numStudents; i++) {
             JOptionPane.showMessageDialog(null, "Enter details for student " + (i + 1));
 
             String firstName = JOptionPane.showInputDialog("First name:");
@@ -82,13 +82,21 @@ public class FIURegistrar {
                 "\nLowest GPA: " + lowestStudent +
                 "\nAverage GPA: " + averageGpa);
 
-        StringBuilder aboveAverage = new StringBuilder("Students with above-average GPA:\n");
-        for (Student student : students) {
-            if (student.getGpa() > averageGpa) {
-                aboveAverage.append(student).append("\n");
-            }
-        }
+                StringBuilder aboveAverage = new StringBuilder("Students with above-average GPA:\n");
+                boolean hasAboveAverage = false;
 
-        JOptionPane.showMessageDialog(null, aboveAverage.toString());
+                for (Student student : students) {
+                    if (student.getGpa() > averageGpa) {
+                        aboveAverage.append(student).append("\n");
+                        hasAboveAverage = true;
+                    }
+                }
+
+                // If no students are above average, append the "no students" message
+                if (!hasAboveAverage) {
+                    aboveAverage.append("No students have an above-average GPA.");
+                }
+
+                JOptionPane.showMessageDialog(null, aboveAverage.toString());
     }
 }

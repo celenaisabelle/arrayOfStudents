@@ -54,11 +54,8 @@ public class Student {
     // toString Method
     @Override
     public String toString() {
-        return "Student{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", pantherId='" + pantherId + '\'' +
-                ", gpa=" + gpa +
-                '}';
+        return "Name: " + firstName + " " + lastName +
+                ", Panther ID: " + pantherId +
+                ", GPA: " + gpa;
     }
 }
